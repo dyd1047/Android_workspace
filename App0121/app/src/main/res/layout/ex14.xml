@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/bt_base"
+        android:text="기준 위젯"
+        android:layout_centerInParent="true"
+        android:layout_width="150dp"
+        android:layout_height="150dp"/>
+    <Button
+        android:text="1번"
+        android:layout_above="@id/bt_base"
+        android:layout_alignLeft="@id/bt_base"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:text="2번"
+        android:layout_above="@id/bt_base"
+        android:layout_toRightOf="@id/bt_base"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:text="3번"
+        android:layout_below="@id/bt_base"
+        android:layout_alignRight="@id/bt_base"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:text="4번"
+        android:layout_alignBottom="@id/bt_base"
+        android:layout_toLeftOf="@id/bt_base"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:text="5번"
+        android:layout_alignBaseline="@id/bt_base"
+        android:layout_toLeftOf="@id/bt_base"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:text="6번"
+        android:layout_alignTop="@id/bt_base"
+        android:layout_toLeftOf="@id/bt_base"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</RelativeLayout>
