@@ -19,21 +19,11 @@ public class BoardAdapter extends BaseAdapter {
     String TAG = this.getClass().getName();
     MainActivity mainActivity;
     LayoutInflater layoutInflater; //XML을 자바 객체화시켜주는 객체
-    List<String> data = new ArrayList<String>();
+    List<Board> data = new ArrayList<Board>();
 
     public BoardAdapter(MainActivity mainActivity) {
         this.mainActivity = mainActivity;
         layoutInflater = mainActivity.getLayoutInflater();
-
-        data.add("사과");
-        data.add("딸기");
-        data.add("배");
-        data.add("오렌지");
-        data.add("파인애플");
-        data.add("멜론");
-        data.add("레몬");
-        data.add("귤");
-
     }
 
     @Override
