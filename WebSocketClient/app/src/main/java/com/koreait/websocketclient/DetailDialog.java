@@ -3,6 +3,7 @@ package com.koreait.websocketclient;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,7 +18,7 @@ public class DetailDialog extends Dialog {
 
     public DetailDialog(@NonNull Context context) {
         super(context);
-        mainActivity = (MainActivity) context;
+        mainActivity =(MainActivity) context;
     }
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +26,9 @@ public class DetailDialog extends Dialog {
 
         //다이얼로그 창의 크기 지정을 시도해본다!!
         WindowManager.LayoutParams params = new WindowManager.LayoutParams();
-
+        int width = (int)(this.getContext().getResources().getDisplayMetrics().widthPixels*0.90);
+        int height = (int)(this.getContext().getResources().getDisplayMetrics().heightPixels*0.90);
+        this.getWindow().setLayout(width, height);
 
         //디자인된  xml을 인플레이션
         setContentView(R.layout.dialog_detail); //xml
@@ -45,7 +48,7 @@ public class DetailDialog extends Dialog {
     }
 
     public void setData(Board board){
-        board_id = board.getBoard_id(); //보관... 얘는 수정대상이 아니므로.. 보관..
+        board_id = board.getBoard_id();//보관...얘는 수정대상이 아니므로..보관..
         t_title.setText(board.getTitle());
         t_writer.setText(board.getWriter());
         t_content.setText(board.getContent());
@@ -60,7 +63,6 @@ public class DetailDialog extends Dialog {
         board.setContent(t_content.getText().toString());
 
         Thread thread = new Thread(){
-            @Override
             public void run() {
                 mainActivity.boardDAO.edit(board);
             }
@@ -69,7 +71,17 @@ public class DetailDialog extends Dialog {
     }
 
     public void del(){
-        MainActivity mainActivity = (MainActivity) this.getContext();
-        mainActivity.boardDAO.del();
+        Thread thread = new Thread(){
+            @Override
+            public void run() {
+                try {
+                    mainActivity.boardDAO.del(board_id); //한건 삭제 요청 board_id 가 필요(상세보기할 때 이미 들어와 있음)
+                } catch (BoardUpdateException e) {
+                    //유저들에게 에러 UI를 보여주자!!
+                    e.printStackTrace();
+                }
+            }
+        };
+        thread.start();
     }
 }

@@ -14,7 +14,7 @@ import org.json.JSONObject;
 public class MyWebSocketClient extends WebSocketClient {
     String TAG=this.getClass().getName();
     MainActivity mainActivity;
-    Gson gson = new Gson();
+    Gson gson=new Gson();
 
     public MyWebSocketClient(URI serverUri, MainActivity mainActivity) {
         super(serverUri);
@@ -28,7 +28,7 @@ public class MyWebSocketClient extends WebSocketClient {
 
     //메시지가 도착하면..
     public void onMessage(String message) {
-        Log.d(TAG, "onMessage called "+message);
+
         //서버에서 전달되어 온 메시지 분석
         //서버에서 발생할 일이? 등록? 수정? 삭제?
         try {
@@ -51,7 +51,7 @@ public class MyWebSocketClient extends WebSocketClient {
             e.printStackTrace();
         }
     }
-    //메세지 보내기
+    //메시지 보내기
     public void sendMsg(SocketMessage socketMessage){
         String jsonString = gson.toJson(socketMessage);
         this.send(jsonString);
